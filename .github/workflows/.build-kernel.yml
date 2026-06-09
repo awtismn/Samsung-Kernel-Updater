@@ -107,6 +107,7 @@ jobs:
              kernel_images(
              name = "samsung_boot_images",
              build_vendor_boot = True,
+             kernel_modules_install = "//common:kernel_aarch64_modules_install",
              vendor_ramdisk_modules = [
              ":qcom_audio_module",
              ":qcom_camera_module",
