@@ -145,7 +145,7 @@ jobs:
               echo "build --experimental_merged_skyframe_analysis_execution" > ~/.bazelrc
               cd android-kernel
               bazel build --jobs=4 //common:kernel_aarch64
-              bazel build --jobs=4 ./modules/samsung-d/...
+              bazel build --jobs=4 modules/samsung-d:all
 
          - name: Uploading Images
            uses: actions/upload-artifact@v4
