@@ -145,5 +145,5 @@ jobs:
            with:
              name: Samsung-Images
              path: |
-               android-kernel/bazel-bin/msm-modules/samsung-drivers/vendor_boot.img
+               android-kernel/bazel-bin/modules/samsung-d/vendor_boot.img
                android-kernel/bazel-bin/common/kernel_aarch64/Image
