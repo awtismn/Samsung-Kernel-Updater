@@ -32,7 +32,7 @@ jobs:
          - name: Download GKI From AOSP
            run: |
             mkdir android-kernel
-            repo init -u https://googlesource.com -b common-android15-6.6 --depth=1
+            repo init -u https://android.googlesource.com/kernel/manifest -b common-android15-6.6 --depth=1
             repo sync -c -j$(nproc) --no-tags --no-clone-bundle
 
          - name: Clone Drivers From Samsung Repo
