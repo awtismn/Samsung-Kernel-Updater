@@ -129,7 +129,7 @@ jobs:
              qcom_dataipa.ko
              qcom_wlan.ko
              EOF
-             if [ -f "vendor_boot.modules_load" ]; then echo "Created vendor_boot.modules.load"; fi
+             if [ -f "vendor_boot.modules.load" ]; then echo "Created vendor_boot.modules.load"; fi
          - name: Setup Bazel
            uses: bazel-contrib/setup-bazel@main
            with:
