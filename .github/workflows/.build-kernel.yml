@@ -28,20 +28,19 @@ jobs:
          - name: Download GKI From AOSP
            run: |
             mkdir android-kernel && cd android-kernel
-            repo init -u https://android.googlesource.com/kernel/manifest -b common-android15-6.6
-            repo sync -c -j$(nproc) --no-tags --no-clone-bundle
+            git clone https://github.com/awtismn/android15-6.6.git
 
          - name: Clone Drivers From Samsung Repo
            run: |
              cd android-kernel
              git clone https://github.com/awtismn/gta9pwifi_kernel.git samsung-source
              echo "===Repo Cloned, Now Cloning Modules...==="
-             mkdir -p modules/samsung-drivers
+             mkdir -p modules/samsung-d
              cp -r samsung-source/techpack modules/samsung-d
              mkdir -p modules/samsung-d/drivers/soc
-             cp -r samsung-source/drivers/soc/qcom msm-modules/samsung-drivers
+             cp -r samsung-source/drivers/soc/qcom modules/samsung-d
              mkdir -p modules/samsung-d/drivers/media/platform
-             cp -r samsung-source/drivers/media/platform/msm msm-modules/samsung-drivers/drivers/media/platform
+             cp -r samsung-source/drivers/media/platform/msm modules/samsung-d/drivers/media/platform
              mkdir -p modules/samsung-d/drivers/net/
              cp -r samsung-source/drivers/net/wireless modules/samsung-d/drivers/net
              echo "===Cloned Drivers, Removing Cloned Repo (To Save Space)==="
