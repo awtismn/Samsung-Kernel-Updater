@@ -10,13 +10,130 @@ jobs:
          - name: Free Up Disk Space
            uses: jlumbroso/free-disk-space@v1.3.1
            with: 
-              tool-cache: true
-              android: true
-              dotnet: true
-              haskell: true
+             tool-cache: true
+             android: true
+             dotnet: true
+             haskell: true
 
-        - name: Install Needed Dependencies
-          run: |
-             sudo apt-get update
-             sudo apt-get install -y bc bison build-essential flex git curl libssl-dev libelf-dev python3 repo
+         - name: Install The Dependencies
+           run: |
+            sudo apt-get update
+            sudo apt-get install -y bc bison build-essential flex git curl libssl-dev libelf-dev python3 repo
 
+         - name: Git Configuration
+           run: |
+            git config --global user.email "awtismn@gmail.com"
+            git config --global user.name "awtismn"
+
+         - name: Download GKI From AOSP
+           run: |
+            mkdir android-kernel && cd android-kernel
+            repo init -u https://googlesource.com -b android15-6.6
+            repo sync -c -j$(nproc) --no-tags --no-clone-bundle
+
+         - name: Clone Drivers From Samsung Repo
+           run: |
+             cd android-kernel
+             git clone https://github.com/awtismn/gta9pwifi_kernel.git samsung-source
+             echo "===Repo Cloned, Now Cloning Modules...==="
+             mkdir -p modules/samsung-drivers
+             cp -r samsung-source/techpack modules/samsung-d
+             mkdir -p modules/samsung-d/drivers/soc
+             cp -r samsung-source/drivers/soc/qcom msm-modules/samsung-drivers
+             mkdir -p modules/samsung-d/drivers/media/platform
+             cp -r samsung-source/drivers/media/platform/msm msm-modules/samsung-drivers/drivers/media/platform
+             mkdir -p modules/samsung-d/drivers/net/
+             cp -r samsung-source/drivers/net/wireless modules/samsung-d/drivers/net
+             echo "===Cloned Drivers, Removing Cloned Repo (To Save Space)==="
+             rm -rf samsung-source/
+             echo "===Done. Next Step==="
+         - name: Creating Neccessary KLeaf Files
+           run: |
+             cd android-kernel/modules/samsung-d
+
+             cat << 'EOF' > BUILD.bazel
+             load("//build/kernel/kleaf:kernel.bzl", "ddk_module")
+
+             package(default_visibility = ["//visibility:public"])
+
+             ddk_module(
+              name = "qcom_audio_module",
+              srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]),
+              out = "qcom_audio.ko",
+              kernel_build = "//common:kernel_aarch64",
+             )
+             ddk_module(
+              name = "qcom_camera_module",
+              srcs = glob(["techpack/camera/**/*.c", "techpack/camera/**/*.h"]),
+              out = "qcom_camera.ko",
+              kernel_build = "//common:kernel_aarch64",
+             )
+             ddk_module(
+              name = "qcom_dataipa_module",
+              srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
+              out = "qcom_dataipa.ko",
+              kernel_build = "//common:kernel_aarch64",
+             )
+             ddk_module(
+              name = "qcom_display_module",
+              srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
+              out = "qcom_display.ko",
+              kernel_build = "//common:kernel_aarch64",
+             )
+             ddk_module(
+              name = "qcom_video_module",
+              srcs = glob(["techpack/video/**/*.c", "techpack/video/**/*.h"]),
+              out = "qcom_video.ko",
+              kernel_build = "//common:kernel_aarch64",
+             )
+             ddk_module(
+              name = "qcom_stub_module",
+              srcs = glob(["techpack/stub/**/*.c", "techpack/stub/**/*.h"]),
+              out = "qcom_stub.ko",
+              kernel_build = "//common:kernel_aarch64",
+             )
+             ddk_module(
+              name = "qcom_wireless_module",
+              srcs = glob([ "drivers/net/wireless/**/*.c", "drivers/net/wireless/**/*.h" ]),
+              out = "qcom_wlan.ko",
+              kernel_build = "//common:kernel_aarch64",
+             )
+             load("//build/kernel/kleaf:kernel.bzl", "kernel_images")
+
+             kernel_images(
+             name = "samsung_boot_images",
+             build_vendor_boot = True,
+             vendor_ramdisk_modules = [
+             ":qcom_audio_module",
+             ":qcom_camera_module",
+             ":qcom_dataipa_module",
+             ":qcom_display_module",
+             ":qcom_video_module",
+             ":qcom_stub_module",
+             ":qcom_wireless_module",
+             ],
+             vendor_boot_modules_load = "vendor_boot.modules.load",
+             kernel_build = "//common:kernel_aarch64",
+             EOF
+             cat << 'EOF' > vendor_boot.modules_load
+             qcom_stub.ko
+             qcom_audio.ko
+             qcom_display.ko
+             qcom_video.ko
+             qcom_camera.ko
+             qcom_dataipa.ko
+             qcom_wlan.ko
+             EOF
+             
+         - name: Compile Images With KLeaf
+           run: |
+              tools/bazel build //common:kernel_aarch64
+              tools/bazel build //modules/samsung-d:all
+
+         - name: Uploading Images
+           uses: actions/upload-artifact@v4
+           with:
+             name: Samsung-Images
+             path: |
+               android-kernel/bazel-bin/msm-modules/samsung-drivers/vendor_boot.img
+               android-kernel/bazel-bin/common/kernel_aarch64/Image
