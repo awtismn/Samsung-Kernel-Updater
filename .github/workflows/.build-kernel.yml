@@ -118,6 +118,7 @@ jobs:
              ],
              vendor_boot_modules_load = "vendor_boot.modules.load",
              kernel_build = "//common:kernel_aarch64",
+             )
              EOF
              if [ -f "BUILD.bazel" ]; then echo "Created BUILD.bazel"; fi
              cat <<EOF > vendor_boot.modules.load
