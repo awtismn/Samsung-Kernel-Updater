@@ -60,47 +60,62 @@ jobs:
 
              package(default_visibility = ["//visibility:public"])
 
+             genrule(
+              name = "generate_env_config",
+              
+             COMMON_INCLUDES = [
+               "include",
+               "arch/arm64/include",
+             ]
+             
              ddk_module(
               name = "qcom_audio_module",
               srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]),
               out = "qcom_audio.ko",
               kernel_build = "//common:kernel_aarch64",
+              linux_includes = COMMON_INCLUDES,
              )
              ddk_module(
               name = "qcom_camera_module",
               srcs = glob(["techpack/camera/**/*.c", "techpack/camera/**/*.h"]),
               out = "qcom_camera.ko",
               kernel_build = "//common:kernel_aarch64",
+              linux_includes = COMMON_INCLUDES,
              )
              ddk_module(
               name = "qcom_dataipa_module",
               srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
               out = "qcom_dataipa.ko",
               kernel_build = "//common:kernel_aarch64",
+              linux_includes = COMMON_INCLUDES,
              )
              ddk_module(
               name = "qcom_display_module",
               srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
               out = "qcom_display.ko",
               kernel_build = "//common:kernel_aarch64",
+              linux_includes = COMMON_INCLUDES,
              )
              ddk_module(
               name = "qcom_video_module",
               srcs = glob(["techpack/video/**/*.c", "techpack/video/**/*.h"]),
               out = "qcom_video.ko",
               kernel_build = "//common:kernel_aarch64",
+              linux_includes = COMMON_INCLUDES,
              )
              ddk_module(
               name = "qcom_stub_module",
               srcs = glob(["techpack/stub/**/*.c", "techpack/stub/**/*.h"]),
               out = "qcom_stub.ko",
               kernel_build = "//common:kernel_aarch64",
+              linux_includes = COMMON_INCLUDES,
              )
              ddk_module(
               name = "qcom_wireless_module",
               srcs = glob([ "drivers/net/wireless/**/*.c", "drivers/net/wireless/**/*.h" ]),
               out = "qcom_wlan.ko",
               kernel_build = "//common:kernel_aarch64",
+              linux_includes = COMMON_INCLUDES,
              )
              load("//build/kernel/kleaf:kernel.bzl", "kernel_images")
 
@@ -145,13 +160,13 @@ jobs:
          - name: Compile Images With KLeaf
            run: |
               if [ -f ".bashrc" ]; then echo "bazelrc exists"; fi
-              echo "build:opt --copt=-O3" > ~/.bazelrc
-              echo "build --strategy=Javac=worker" > ~/.bazelrc
+              echo "build:opt " > ~/.bazelrc
+              echo "build " > ~/.bazelrc
               echo "build --strategy=DexBuilder=worker" > ~/.bazelrc
-              echo "build --experimental_merged_skyframe_analysis_execution" > ~/.bazelrc
+              echo "build " > ~/.bazelrc
               cd android-kernel
-              bazel build --jobs=4 //common:kernel_aarch64
-              bazel build --jobs=4 modules/samsung-d:all
+              bazel build --jobs=16 --copt=-O3 --strategy=Javac=worker --experimental_merged_skyframe_analysis_execution --strategy=DexBuilder=worker //common:kernel_aarch64
+              bazel build --jobs=16 --copt=-O3 --strategy=Javac=worker --experimental_merged_skyframe_analysis_execution --strategy=DexBuilder=worker modules/samsung-d:all
 
          - name: Uploading Images
            uses: actions/upload-artifact@v4
