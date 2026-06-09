@@ -128,12 +128,17 @@ jobs:
              qcom_dataipa.ko
              qcom_wlan.ko
              EOF
-             
+         - name: Setup Bazel
+           uses: bazel-contrib/setup-bazel@v0.19.0
+           with:
+             repository-cache: true
+             disk-cache: ${{ github.workflow }}
+
          - name: Compile Images With KLeaf
            run: |
               cd android-kernel
-              tools/bazel build //common:kernel_aarch64
-              tools/bazel build //modules/samsung-d:all
+              bazel build //common:kernel_aarch64
+              bazel build //modules/samsung-d:all
 
          - name: Uploading Images
            uses: actions/upload-artifact@v4
