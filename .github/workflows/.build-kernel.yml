@@ -1,4 +1,4 @@
-9name: Update Samsung Kernel
+name: Update Samsung Kernel
 
 on: 
    workflow_dispatch:
