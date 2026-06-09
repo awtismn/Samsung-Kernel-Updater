@@ -138,12 +138,12 @@ jobs:
              
          - name: Compile Images With KLeaf
            run: |
+              if [ -f "~/.bashrc" ]; then echo "bazelrc exists"; fi
+              echo "build:opt --copt=-O3" > ~/.bazelrc
+              echo "build --strategy=Javac=worker" > ~/.bazelrc
+              echo "build --strategy=DexBuilder=worker" > ~/.bazelrc
+              echo "build --experimental_merged_skyframe_analysis_execution" > ~/.bazelrc
               cd android-kernel
-              echo "build:opt --copt=-O3" > .bazelrc
-              echo "build --strategy=Javac=worker" > .bazelrc
-              echo "build --strategy=DexBuilder=worker" > .bazelrc
-              echo "build --experimental_merged_skyframe_analysis_execution" > .bazelrc
-
               bazel build --jobs=HOST_CPUS //common:kernel_aarch64
               bazel build --jobs=HOST_CPUS //modules/samsung-d:all
 
