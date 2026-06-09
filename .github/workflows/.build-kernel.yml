@@ -20,7 +20,7 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y bc bison build-essential flex git curl libssl-dev libelf-dev python3
             mkdir -p ~/bin
-            curl https://googleapis.com > ~/bin/repo
+            curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
             chmod a+x ~/bin/repo
             echo "$HOME/bin" >> $GITHUB_PATH
 
