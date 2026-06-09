@@ -119,7 +119,7 @@ jobs:
              )
              kernel_images(
              name = "samsung_boot_images",
-             build_vendor_boot = true,
+             build_vendor_boot = True,
              kernel_modules_install = ":samsung_modules_install",
              kernel_build = "//common:kernel_aarch64",
              )
