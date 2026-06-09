@@ -55,7 +55,7 @@ jobs:
            run: |
              cd android-kernel/modules/samsung-d
 
-             cat << 'EOF' > BUILD.bazel
+             cat <<EOF > BUILD.bazel
              load("//build/kernel/kleaf:kernel.bzl", "ddk_module")
 
              package(default_visibility = ["//visibility:public"])
@@ -119,7 +119,8 @@ jobs:
              vendor_boot_modules_load = "vendor_boot.modules.load",
              kernel_build = "//common:kernel_aarch64",
              EOF
-             cat << 'EOF' > vendor_boot.modules_load
+             if [ -f "BUILD.bazel" ]; then echo "Created BUILD.bazel"; fi
+             cat <<EOF > vendor_boot.modules.load
              qcom_stub.ko
              qcom_audio.ko
              qcom_display.ko
@@ -128,6 +129,7 @@ jobs:
              qcom_dataipa.ko
              qcom_wlan.ko
              EOF
+             if [ -f "vendor_boot.modules_load" ]; then echo "Created vendor_boot.modules.load"; fi
          - name: Setup Bazel
            uses: bazel-contrib/setup-bazel@main
            with:
@@ -142,8 +144,8 @@ jobs:
               echo "build --strategy=DexBuilder=worker" > .bazelrc
               echo "build --experimental_merged_skyframe_analysis_execution" > .bazelrc
 
-              bazel build --jobs=HOST_CPUS -local_cpu_resources=HOST_CPUS //common:kernel_aarch64
-              bazel build --jobs=HOST_CPUS -local_cpu_resources=HOST_CPUS //modules/samsung-d:all
+              bazel build --jobs=HOST_CPUS //common:kernel_aarch64
+              bazel build --jobs=HOST_CPUS //modules/samsung-d:all
 
          - name: Uploading Images
            uses: actions/upload-artifact@v4
