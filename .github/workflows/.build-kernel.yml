@@ -55,7 +55,7 @@ jobs:
            run: |
              cd android-kernel/modules/samsung-d
              echo "Creating BUILD files"
-             cat <<EOF > BUILD
+             cat <<EOF > BUILD.bazel
              load("//build/kernel/kleaf:kernel.bzl", "ddk_module")
 
              package(default_visibility = ["//visibility:public"])
@@ -138,13 +138,13 @@ jobs:
              
          - name: Compile Images With KLeaf
            run: |
-              if [ -f "~/.bashrc" ]; then echo "bazelrc exists"; fi
+              if [ -f ".bashrc" ]; then echo "bazelrc exists"; fi
               echo "build:opt --copt=-O3" > ~/.bazelrc
               echo "build --strategy=Javac=worker" > ~/.bazelrc
               echo "build --strategy=DexBuilder=worker" > ~/.bazelrc
               echo "build --experimental_merged_skyframe_analysis_execution" > ~/.bazelrc
               cd android-kernel
-              bazel build --jobs=4 ./common:kernel_aarch64
+              bazel build --jobs=4 //common:kernel_aarch64
               bazel build --jobs=4 ./modules/samsung-d/...
 
          - name: Uploading Images
