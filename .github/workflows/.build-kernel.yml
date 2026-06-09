@@ -18,7 +18,11 @@ jobs:
          - name: Install The Dependencies
            run: |
             sudo apt-get update
-            sudo apt-get install -y bc bison build-essential flex git curl libssl-dev libelf-dev python3 repo
+            sudo apt-get install -y bc bison build-essential flex git curl libssl-dev libelf-dev python3
+            mkdir -p ~/bin
+            curl https://googleapis.com > ~/bin/repo
+            chmod a+x ~/bin/repo
+            echo "$HOME/bin" >> $GITHUB_PATH
 
          - name: Git Configuration
            run: |
@@ -28,7 +32,8 @@ jobs:
          - name: Download GKI From AOSP
            run: |
             mkdir android-kernel
-            git clone https://github.com/awtismn/android15-6.6.git android-kernel
+            repo init -u https://android.googlesource.com/kernel/manifest -b common-android15-6.6 --depth=1
+            repo sync -c -j$(nproc) --no-tags --no-clone-bundle
 
          - name: Clone Drivers From Samsung Repo
            run: |
