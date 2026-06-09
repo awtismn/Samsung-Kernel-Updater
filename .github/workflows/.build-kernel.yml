@@ -1,0 +1,22 @@
+name: Update Samsung Kernel
+
+on: 
+   workflow_dispatch:
+
+jobs:
+   build-kernel:
+      runs-on: ubuntu-latest
+      steps:
+         - name: Free Up Disk Space
+           uses: jlumbroso/free-disk-space@v1.3.1
+           with: 
+              tool-cache: true
+              android: true
+              dotnet: true
+              haskell: true
+
+        - name: Install Needed Dependencies
+          run: |
+             sudo apt-get update
+             sudo apt-get install -y bc bison build-essential flex git curl libssl-dev libelf-dev python3 repo
+
