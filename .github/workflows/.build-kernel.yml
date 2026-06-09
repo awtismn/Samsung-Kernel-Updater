@@ -56,7 +56,7 @@ jobs:
              cd android-kernel/modules/samsung-d
              echo "Creating BUILD files"
              cat <<EOF > BUILD.bazel
-             load("//build/kernel/kleaf:kernel.bzl", "ddk_module")
+             load("//build/kernel/kleaf:kernel.bzl", "ddk_module", "kernel_images", "kernel_modules_install")
 
              package(default_visibility = ["//visibility:public"])
 
@@ -104,11 +104,9 @@ jobs:
              )
              load("//build/kernel/kleaf:kernel.bzl", "kernel_images")
 
-             kernel_images(
-             name = "samsung_boot_images",
-             build_vendor_boot = True,
-             kernel_modules_install = "//common:kernel_aarch64_modules_install",
-             vendor_ramdisk_modules = [
+             kernel__modules_install(
+             name = "samsung_modules_install",
+             kernel_modules = [
              ":qcom_audio_module",
              ":qcom_camera_module",
              ":qcom_dataipa_module",
@@ -117,7 +115,12 @@ jobs:
              ":qcom_stub_module",
              ":qcom_wireless_module",
              ],
-             vendor_boot_modules_load = "vendor_boot.modules.load",
+             kernel_build = "//common:kernel_aarch64",
+             )
+             kernel_images(
+             name = "samsung_boot_images",
+             build_vendor_boot = true,
+             kernel_modules_install = ":samsung_modules_install",
              kernel_build = "//common:kernel_aarch64",
              )
              EOF
