@@ -114,8 +114,7 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               linux_includes = COMMON_INCLUDES,
              )
-             load("//build/kernel/kleaf:kernel.bzl", "kernel_images")
-
+             
              kernel_modules_install(
              name = "samsung_modules_install",
              kernel_modules = [
