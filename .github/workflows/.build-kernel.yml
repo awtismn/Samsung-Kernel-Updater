@@ -59,10 +59,7 @@ jobs:
              load("//build/kernel/kleaf:kernel.bzl", "ddk_module", "kernel_images", "kernel_modules_install")
 
              package(default_visibility = ["//visibility:public"])
-
-             genrule(
-              name = "generate_env_config",
-              
+             
              COMMON_INCLUDES = [
                "include",
                "arch/arm64/include",
