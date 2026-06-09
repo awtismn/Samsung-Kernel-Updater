@@ -39,7 +39,7 @@ jobs:
            run: |
              cd android-kernel
              git clone https://github.com/awtismn/gta9pwifi_kernel.git samsung-source
-             echo "===Repo Cloned, Now Cloning Modules...==="
+             echo "Repo Cloned, Now Cloning Modules..."
              mkdir -p modules/samsung-d
              cp -r samsung-source/techpack modules/samsung-d
              mkdir -p modules/samsung-d/drivers/soc
@@ -48,13 +48,13 @@ jobs:
              cp -r samsung-source/drivers/media/platform/msm modules/samsung-d/drivers/media/platform
              mkdir -p modules/samsung-d/drivers/net/
              cp -r samsung-source/drivers/net/wireless modules/samsung-d/drivers/net
-             echo "===Cloned Drivers, Removing Cloned Repo (To Save Space)==="
+             echo "Cloned Drivers, Removing Cloned Repo (To Save Space)"
              rm -rf samsung-source/
-             echo "===Done. Next Step==="
+             echo "Done. Next Step"
          - name: Creating Neccessary KLeaf Files
            run: |
              cd android-kernel/modules/samsung-d
-
+             echo "Creating BUILD files"
              cat <<EOF > BUILD
              load("//build/kernel/kleaf:kernel.bzl", "ddk_module")
 
