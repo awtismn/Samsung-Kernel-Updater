@@ -1,4 +1,4 @@
-name: Update Samsung Kernel
+9name: Update Samsung Kernel
 
 on: 
    workflow_dispatch:
@@ -27,8 +27,8 @@ jobs:
 
          - name: Download GKI From AOSP
            run: |
-            mkdir android-kernel && cd android-kernel
-            git clone https://github.com/awtismn/android15-6.6.git
+            mkdir android-kernel
+            git clone https://github.com/awtismn/android15-6.6.git android-kernel
 
          - name: Clone Drivers From Samsung Repo
            run: |
@@ -126,6 +126,7 @@ jobs:
              
          - name: Compile Images With KLeaf
            run: |
+              cd android-kernel
               tools/bazel build //common:kernel_aarch64
               tools/bazel build //modules/samsung-d:all
 
