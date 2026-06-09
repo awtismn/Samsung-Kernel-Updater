@@ -104,7 +104,7 @@ jobs:
              )
              load("//build/kernel/kleaf:kernel.bzl", "kernel_images")
 
-             kernel__modules_install(
+             kernel_modules_install(
              name = "samsung_modules_install",
              kernel_modules = [
              ":qcom_audio_module",
