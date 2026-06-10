@@ -64,6 +64,7 @@ jobs:
               name = "qcom_audio_module",
               srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]),
               out = "qcom_audio.ko",
+              outs = ["qcom_audio.ko"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/techpack/audio",
@@ -73,6 +74,7 @@ jobs:
               name = "qcom_camera_module",
               srcs = glob(["techpack/camera/**/*.c", "techpack/camera/**/*.h"]),
               out = "qcom_camera.ko",
+              outs = ["qcom_camera.ko"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/techpack/camera",
@@ -82,6 +84,7 @@ jobs:
               name = "qcom_dataipa_module",
               srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
               out = "qcom_dataipa.ko",
+              outs = ["qcom_dataipa.ko"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/techpack/dataipa",
@@ -91,6 +94,7 @@ jobs:
               name = "qcom_display_module",
               srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
               out = "qcom_display.ko",
+              outs = ["qcom_display.ko"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/techpack/display",
@@ -100,6 +104,7 @@ jobs:
               name = "qcom_video_module",
               srcs = glob(["techpack/video/**/*.c", "techpack/video/**/*.h"]),
               out = "qcom_video.ko",
+              outs = ["qcom_video.ko"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/techpack/video",
@@ -109,6 +114,7 @@ jobs:
               name = "qcom_stub_module",
               srcs = glob(["techpack/stub/**/*.c", "techpack/stub/**/*.h"]),
               out = "qcom_stub.ko",
+              outs = ["qcom_stub.ko"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/techpack/stub",
@@ -118,6 +124,7 @@ jobs:
               name = "qcom_wireless_module",
               srcs = glob([ "drivers/net/wireless/**/*.c", "drivers/net/wireless/**/*.h"]),
               out = "qcom_wlan.ko",
+              outs = ["qcom_wlan.ko"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/drivers/net/wireless",
