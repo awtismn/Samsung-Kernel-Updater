@@ -151,7 +151,7 @@ jobs:
          - name: Compile Images With Bazel
            run: |
               bazel clean --expunge
-              bazel build -c opt --jobs=4 --config=fast --noincompatible_sandbox_hermetic_tmp --sandbox_debug --config=android_aarch64 --verbose_failures //android-kernel/modules/samsung-d:samsung_boot_images --sandbox_add_mount_pair=/lib/modules --sandbox_add_mount_pair=/usr/src --strategy=CppCompile=standalone           
+              bazel build -c opt --jobs=4 --config=fast --noincompatible_sandbox_hermetic_tmp --sandbox_debug --verbose_failures //android-kernel/modules/samsung-d:samsung_boot_images --sandbox_add_mount_pair=/lib/modules --sandbox_add_mount_pair=/usr/src --strategy=CppCompile=standalone           
          - name: Uploading Images
            uses: actions/upload-artifact@v4
            with:
