@@ -56,11 +56,11 @@ jobs:
              cd android-kernel/modules/samsung-d
              echo "Creating BUILD files"
              cat <<EOF > BUILD.bazel
-             load("//build/kernel/kleaf:kernel.bzl", "ddk_module", "kernel_module", "kernel_images", "kernel_modules_install")
+             load("//build/kernel/kleaf:kernel.bzl", "kernel_module", "kernel_images", "kernel_modules_install")
 
              package(default_visibility = ["//visibility:public"])
              
-             ddk_module(
+             kernel_module(
               name = "qcom_audio_module",
               srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]),
               out = "qcom_audio.ko",
@@ -69,7 +69,7 @@ jobs:
               "-Iandroid-kernel/modules/samsung-d/techpack/audio",
               ],
              )
-             ddk_module(
+             kernel_module(
               name = "qcom_camera_module",
               srcs = glob(["techpack/camera/**/*.c", "techpack/camera/**/*.h"]),
               out = "qcom_camera.ko",
@@ -78,7 +78,7 @@ jobs:
               "-Iandroid-kernel/modules/samsung-d/techpack/camera",
               ],
              )
-             ddk_module(
+             kernel_module(
               name = "qcom_dataipa_module",
               srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
               out = "qcom_dataipa.ko",
@@ -87,7 +87,7 @@ jobs:
               "-Iandroid-kernel/modules/samsung-d/techpack/dataipa",
               ],
              )
-             ddk_module(
+             kernel_module(
               name = "qcom_display_module",
               srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
               out = "qcom_display.ko",
@@ -96,7 +96,7 @@ jobs:
               "-Iandroid-kernel/modules/samsung-d/techpack/display",
               ],
              )
-             ddk_module(
+             kernel_module(
               name = "qcom_video_module",
               srcs = glob(["techpack/video/**/*.c", "techpack/video/**/*.h"]),
               out = "qcom_video.ko",
@@ -105,7 +105,7 @@ jobs:
               "-Iandroid-kernel/modules/samsung-d/techpack/video",
               ],
              )
-             ddk_module(
+             kernel_module(
               name = "qcom_stub_module",
               srcs = glob(["techpack/stub/**/*.c", "techpack/stub/**/*.h"]),
               out = "qcom_stub.ko",
@@ -114,7 +114,7 @@ jobs:
               "-Iandroid-kernel/modules/samsung-d/techpack/stub",
               ],
              )
-             ddk_module(
+             kernel_module(
               name = "qcom_wireless_module",
               srcs = glob([ "drivers/net/wireless/**/*.c", "drivers/net/wireless/**/*.h"]),
               out = "qcom_wlan.ko",
