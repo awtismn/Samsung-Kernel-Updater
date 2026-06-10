@@ -56,7 +56,7 @@ jobs:
              cd android-kernel/modules/samsung-d
              echo "Creating BUILD files"
              cat <<EOF > BUILD.bazel
-             load("//build/kernel/kleaf:kernel.bzl", "ddk_module" "kernel_module", "kernel_images", "kernel_modules_install")
+             load("//build/kernel/kleaf:kernel.bzl", "ddk_module", "kernel_module", "kernel_images", "kernel_modules_install")
 
              package(default_visibility = ["//visibility:public"])
              
