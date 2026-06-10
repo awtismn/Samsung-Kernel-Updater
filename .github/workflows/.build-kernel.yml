@@ -61,13 +61,13 @@ jobs:
              package(default_visibility = ["//visibility:public"])
              
              COMMON_INCLUDES = [
-               "include",
-               "include/uapi",
-               "include/linux",
-               "arch/arm64/include",
-               "arch/arm64/include/generated",
-               "arch/arm64/include/uapi",
-               "arch/arm64/include/generated/uapi",
+               "../../include",
+               "../../include/uapi",
+               "../../include/linux",
+               "../../arch/arm64/include",
+               "../../arch/arm64/include/generated",
+               "../../arch/arm64/include/uapi",
+               "../../arch/arm64/include/generated/uapi",
              ]
 
              QUALCOMM_COMPILER_FIX = [
