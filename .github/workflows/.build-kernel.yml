@@ -156,7 +156,7 @@ jobs:
          - name: Compile Images With Bazel
            run: |
               bazel clean --expunge
-              bazel build -c opt --jobs=16 --config=fast //android-kernel/modules/samsung-d:samsung_boot_images
+              bazel build -c opt --jobs=16 --config=fast --nokleaf_local //android-kernel/modules/samsung-d:samsung_boot_images
               
          - name: Uploading Images
            uses: actions/upload-artifact@v4
