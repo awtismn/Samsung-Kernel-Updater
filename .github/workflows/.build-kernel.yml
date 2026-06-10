@@ -69,6 +69,12 @@ jobs:
                "arch/arm64/include/uapi",
                "arch/arm64/include/generated/uapi",
              ]
+
+             QUALCOMM_COMPILER_FIX = [
+             "-I../../common/include",
+             "-I../../common/arch/arm64/include",
+             "-I../../common/arch/arm64/include/generated",
+             ]
              
              ddk_module(
               name = "qcom_audio_module",
@@ -76,6 +82,7 @@ jobs:
               out = "qcom_audio.ko",
               kernel_build = "//common:kernel_aarch64",
               linux_includes = COMMON_INCLUDES,
+              copts = QUALCOMM_COMPILER_FIX,
              )
              ddk_module(
               name = "qcom_camera_module",
@@ -83,6 +90,7 @@ jobs:
               out = "qcom_camera.ko",
               kernel_build = "//common:kernel_aarch64",
               linux_includes = COMMON_INCLUDES,
+              copts = QUALCOMM_COMPILER_FIX,
              )
              ddk_module(
               name = "qcom_dataipa_module",
@@ -90,6 +98,7 @@ jobs:
               out = "qcom_dataipa.ko",
               kernel_build = "//common:kernel_aarch64",
               linux_includes = COMMON_INCLUDES,
+              copts = QUALCOMM_COMPILER_FIX,
              )
              ddk_module(
               name = "qcom_display_module",
@@ -97,6 +106,7 @@ jobs:
               out = "qcom_display.ko",
               kernel_build = "//common:kernel_aarch64",
               linux_includes = COMMON_INCLUDES,
+              copts = QUALCOMM_COMPILER_FIX,
              )
              ddk_module(
               name = "qcom_video_module",
@@ -104,6 +114,7 @@ jobs:
               out = "qcom_video.ko",
               kernel_build = "//common:kernel_aarch64",
               linux_includes = COMMON_INCLUDES,
+              copts = QUALCOMM_COMPILER_FIX,
              )
              ddk_module(
               name = "qcom_stub_module",
@@ -111,6 +122,7 @@ jobs:
               out = "qcom_stub.ko",
               kernel_build = "//common:kernel_aarch64",
               linux_includes = COMMON_INCLUDES,
+              copts = QUALCOMM_COMPILER_FIX,
              )
              ddk_module(
               name = "qcom_wireless_module",
@@ -118,6 +130,7 @@ jobs:
               out = "qcom_wlan.ko",
               kernel_build = "//common:kernel_aarch64",
               linux_includes = COMMON_INCLUDES,
+              copts = QUALCOMM_COMPILER_FIX,
              )
              
              kernel_modules_install(
