@@ -84,6 +84,7 @@ jobs:
              ddk_module(
               name = "qcom_display_module",
               srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
+              out = "qcom_display.ko",
               internal_outs = ["qcom_display.ko"],
               kernel_build = "//common:kernel_aarch64",
              )
@@ -150,7 +151,7 @@ jobs:
          - name: Compile Images With Bazel
            run: |
               bazel clean --expunge
-              bazel build -c opt --jobs=4 --config=fast --noincompatible_sandbox_hermetic_tmp --sandbox_debug --verbose_failures //android-kernel/modules/samsung-d:samsung_boot_images --sandbox_add_mount_pair=/lib/modules --sandbox_add_mount_pair=/usr/src --strategy=CppCompile=standalone           
+              bazel build //android-kernel/modules/samsung-d:samsung_boot_images --sandbox_debug --verbose_failures
          - name: Uploading Images
            uses: actions/upload-artifact@v4
            with:
