@@ -173,6 +173,10 @@ jobs:
              
          - name: Compile Images With Bazel
            run: |
+              find android-kernel/modules/samsung-d/ -type f -name ".*.cmd" -delete
+              find android-kernel/modules/samsung-d/ -type f -name "*.o.d" -delete
+              find android-kernel/modules/samsung-d/ -type f -name "modules.order" -delete
+
               bazel clean --expunge
               bazel build -c opt --jobs=16 --config=fast //android-kernel/modules/samsung-d:samsung_boot_images
               
