@@ -7,14 +7,6 @@ jobs:
    build-kernel:
       runs-on: ubuntu-latest
       steps:
-         - name: Free Up Disk Space
-           uses: jlumbroso/free-disk-space@v1.3.1
-           with: 
-             tool-cache: true
-             android: true
-             dotnet: true
-             haskell: true
-
          - name: Install The Dependencies
            run: |
             sudo apt-get update
@@ -23,11 +15,6 @@ jobs:
             curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
             chmod a+x ~/bin/repo
             echo "$HOME/bin" >> $GITHUB_PATH
-
-         - name: Git Configuration
-           run: |
-            git config --global user.email "awtismn@gmail.com"
-            git config --global user.name "awtismn"
 
          - name: Download GKI From AOSP
            run: |
