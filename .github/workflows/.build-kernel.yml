@@ -156,8 +156,8 @@ jobs:
          - name: Compile Images With Bazel
            run: |
               cd android-kernel
-              bazel build -c opt --jobs=16 --copt=-O3 --standalone --strategy=Javac=worker --experimental_merged_skyframe_analysis_execution --strategy=DexBuilder=worker //common:kernel_aarch64
-              bazel build -c opt --jobs=16 --copt=-O3 --standalone --strategy=Javac=worker --verbose_failures --strategy=DexBuilder=worker modules/samsung-d:all
+              bazel build -c opt --jobs=16 --copt=-O3 --config=local --strategy=Javac=worker --experimental_merged_skyframe_analysis_execution --strategy=DexBuilder=worker //common:kernel_aarch64
+              bazel build -c opt --jobs=16 --copt=-O3 --config=local --strategy=Javac=worker --verbose_failures --strategy=DexBuilder=worker modules/samsung-d:all
 
          - name: Uploading Images
            uses: actions/upload-artifact@v4
