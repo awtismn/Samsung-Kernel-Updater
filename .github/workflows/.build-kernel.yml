@@ -62,7 +62,11 @@ jobs:
              
              COMMON_INCLUDES = [
                "include",
+               "include/uapi",
                "arch/arm64/include",
+               "arch/arm64/include/generated",
+               "arch/arm64/include/uapi",
+               "arch/arm64/include/generated/uapi",
              ]
              
              ddk_module(
