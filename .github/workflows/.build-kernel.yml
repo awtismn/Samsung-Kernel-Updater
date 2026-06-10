@@ -74,7 +74,7 @@ jobs:
               internal_outs = ["qcom_camera.ko"],
               kernel_build = "//common:kernel_aarch64",
              )
-             dkk_module(
+             ddk_module(
               name = "qcom_dataipa_module",
               srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
               out = "qcom_dataipa.ko",
