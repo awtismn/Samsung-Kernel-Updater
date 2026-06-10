@@ -129,8 +129,7 @@ jobs:
          - name: Setup Bazel
            uses: bazel-contrib/setup-bazel@main
            with:
-             repository-cache: true
-             disk-cache: ${{ github.workflow }}
+             repository-cache: false
              
          - name: Compile Images With Bazel
            run: |
