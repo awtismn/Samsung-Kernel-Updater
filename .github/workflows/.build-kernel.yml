@@ -82,6 +82,10 @@ jobs:
               srcs = glob(["techpack/stub/**/*.c", "techpack/stub/**/*.h"]),
               out = "qcom_stub.ko",
               kernel_build = "//common:kernel_aarch64",
+              copts = [
+              "-Iandroid-kernel/modules/samsung-d/techpack/stub",
+              "-Iandroid-kernel/modules/samsung-d/techpack/stub/include",
+              ],
              )
              ddk_module(
               name = "qcom_wireless_module",
