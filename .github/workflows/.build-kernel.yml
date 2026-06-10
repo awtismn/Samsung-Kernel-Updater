@@ -62,43 +62,43 @@ jobs:
              
              ddk_module(
               name = "qcom_audio_module",
-              srcs = glob(["techpack/audio/**/*"]),
+              srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]),
               out = "qcom_audio.ko",
               kernel_build = "//common:kernel_aarch64",
              )
              ddk_module(
               name = "qcom_camera_module",
-              srcs = glob(["techpack/camera/**/*"]),
+              srcs = glob(["techpack/camera/**/*.c", "techpack/camera/**/*.h"]),
               out = "qcom_camera.ko",
               kernel_build = "//common:kernel_aarch64",
              )
              ddk_module(
               name = "qcom_dataipa_module",
-              srcs = glob(["techpack/dataipa/**/*."]),
+              srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
               out = "qcom_dataipa.ko",
               kernel_build = "//common:kernel_aarch64",
              )
              ddk_module(
               name = "qcom_display_module",
-              srcs = glob(["techpack/display/**/*"]),
+              srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
               out = "qcom_display.ko",
               kernel_build = "//common:kernel_aarch64",
              )
              ddk_module(
               name = "qcom_video_module",
-              srcs = glob(["techpack/video/**/*"]),
+              srcs = glob(["techpack/video/**/*.c", "techpack/video/**/*.h"]),
               out = "qcom_video.ko",
               kernel_build = "//common:kernel_aarch64",
              )
              ddk_module(
               name = "qcom_stub_module",
-              srcs = glob(["techpack/stub/**/*"]),
+              srcs = glob(["techpack/stub/**/*.c", "techpack/stub/**/*.h"]),
               out = "qcom_stub.ko",
               kernel_build = "//common:kernel_aarch64",
              )
              ddk_module(
               name = "qcom_wireless_module",
-              srcs = glob([ "drivers/net/wireless/**/*"]),
+              srcs = glob([ "drivers/net/wireless/**/*.c", "drivers/net/wireless/**/*.h"]),
               out = "qcom_wlan.ko",
               kernel_build = "//common:kernel_aarch64",
              )
