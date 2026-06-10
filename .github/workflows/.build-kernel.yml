@@ -156,7 +156,7 @@ jobs:
          - name: Compile Images With Bazel
            run: |
               bazel clean --expunge
-              bazel build -c opt --jobs=16 --spawn_strategy=local --strategy=KernelBuild=local --strategy=KernelModule=local --strategy=DdkConfig=local --action_env=SANDBOX_MULTIPLEX_LOCAL=1 --action_env=KLEAF_LOCAL_BUILD=1 //android-kernel/modules/samsung-d:samsung_boot_images
+              bazel build -c opt --jobs=16 --config=fast //android-kernel/modules/samsung-d:samsung_boot_images
               
          - name: Uploading Images
            uses: actions/upload-artifact@v4
