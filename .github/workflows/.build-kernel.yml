@@ -134,8 +134,10 @@ jobs:
              
          - name: Compile Images With Bazel
            run: |
-              bazel clean --expunge
-              bazel build //android-kernel/modules/samsung-d:samsung_boot_images --config=fast --sandbox_debug --verbose_failures --define=KLEAF_WARN_UNDECLARED_OUTPUTS=true
+              rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/cache
+              rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/bazel
+              
+              bazel build //android-kernel/modules/samsung-d:samsung_boot_images --config=fast --sandbox_debug --verbose_failures --define=KLEAF_WARN_UNDECLARED_OUTPUTS=true --output_filter=".*"
          - name: Uploading Images
            uses: actions/upload-artifact@v4
            with:
