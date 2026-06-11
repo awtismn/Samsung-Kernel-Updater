@@ -29,6 +29,7 @@ jobs:
              echo "Repo Cloned, Now Cloning Modules..."
              mkdir -p modules/samsung-d
              cp -r samsung-source/techpack modules/samsung-d
+             cp -r samsung-source/drivers modules/samsung-d
              cp -r samsung-source/include modules/samsung-d
              mkdir -p modules/samsung-d/drivers/soc
              cp -r samsung-source/drivers/soc/qcom modules/samsung-d/drivers/soc
@@ -61,6 +62,7 @@ jobs:
               "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/techpack/",
               "-Iandroid-kernel/modules/samsung-d/linux",
+              "-Iandroid-kernel/modules/samsung-d/drivers",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio/include",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio/include/aosc",
@@ -87,6 +89,7 @@ jobs:
               "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack",
+              "-Iandroid-kernel/modules/samsung-d/drivers",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers/cam_cdm",
@@ -109,6 +112,7 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/linux",
+              "-Iandroid-kernel/modules/samsung-d/drivers",
               "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/dataipa",
               "-Iandroid-kernel/modules/samsung-d/techpack/dataipa/drivers/platform/msm",
@@ -127,6 +131,7 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/linux",
+              "-Iandroid-kernel/modules/samsung-d/drivers",
               "-Iandroid-kernel/modules/samsung-d/linux/soc/qcom",
               "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/display",
@@ -150,6 +155,7 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/linux",
+              "-Iandroid-kernel/modules/samsung-d/drivers",
               "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/video/include",
               "-Iandroid-kernel/modules/samsung-d/techpack/video/msm",
@@ -170,6 +176,7 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/linux",
+              "-Iandroid-kernel/modules/samsung-d/drivers",
               "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/stub",
               "-Iandroid-kernel/modules/samsung-d/techpack/stub/include/uapi/stub",
