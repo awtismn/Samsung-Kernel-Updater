@@ -89,7 +89,7 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
-              "-Iandroid-kernel/modules/samsung-d/techpack/dataipa/platform/msm/gsi"
+              "-Iandroid-kernel/modules/samsung-d/techpack/dataipa/platform/msm/gsi",
               "-Wno-error",
               "-Wno-unused-function",
               "-Wno-unused-variable",
