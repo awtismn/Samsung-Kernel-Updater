@@ -143,7 +143,7 @@ jobs:
              )
              ddk_module(
               name = "qcom_wireless_module",
-              srcs = glob([ "drivers/net/**/*.c", "drivers/net/**/*.h"]),
+              srcs = glob([ "drivers/net/wireless/**/*.c", "drivers/net/wireless/**/*.h"]),
               out = "qcom_wlan.ko",
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
