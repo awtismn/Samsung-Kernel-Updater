@@ -99,6 +99,8 @@ jobs:
               "-Wno-error",
               "-Wno-unused-function",
               "-Wno-unused-variable",
+              "-Wno-declaration-after-statement",
+              "-Iandroid-kernel/modules/samsung-d/techpack/stub",
               ],
              )
              ddk_module(
