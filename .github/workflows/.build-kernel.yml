@@ -29,7 +29,7 @@ jobs:
              echo "Repo Cloned, Now Cloning Modules..."
              mkdir -p modules/samsung-d
              cp -r samsung-source/techpack modules/samsung-d
-             co -r samsung-source/include modules/samsung-d
+             cp -r samsung-source/include modules/samsung-d
              mkdir -p modules/samsung-d/drivers/soc
              cp -r samsung-source/drivers/soc/qcom modules/samsung-d/drivers/soc
              mkdir -p modules/samsung-d/drivers
