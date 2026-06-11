@@ -59,6 +59,7 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/techpack/",
               "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio/include",
@@ -85,6 +86,7 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/linux",
+              "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers",
               "-Wno-error",
@@ -102,6 +104,7 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/linux",
+              "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/dataipa",
               "-Iandroid-kernel/modules/samsung-d/techpack/dataipa/drivers",
               "-Wno-error",
@@ -119,6 +122,7 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/linux",
+              "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/display",
               "-Iandroid-kernel/modules/samsung-d/techpack/display/hdcp",
               "-Iandroid-kernel/modules/samsung-d/techpack/display/msm",
@@ -140,6 +144,7 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/linux",
+              "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/video/include",
               "-Iandroid-kernel/modules/samsung-d/techpack/video/msm",
               "-Iandroid-kernel/modules/samsung-d/techpack/video/msm/vidc",
@@ -159,6 +164,7 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/linux",
+              "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/stub",
               "-Iandroid-kernel/modules/samsung-d/techpack/stub/include",
               "-Wno-error",
