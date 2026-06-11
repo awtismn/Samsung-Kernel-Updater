@@ -29,7 +29,6 @@ jobs:
              echo "Repo Cloned, Now Cloning Modules..."
              mkdir -p modules/samsung-d
              cp -r samsung-source/techpack modules/samsung-d
-             cp -r samsung-source/drivers modules/samsung-d
              cp -r samsung-source/include modules/samsung-d
              mkdir -p modules/samsung-d/drivers/soc
              cp -r samsung-source/drivers/soc/qcom modules/samsung-d/drivers/soc
@@ -49,28 +48,32 @@ jobs:
              ddk_module(
              name = "qcom_audio_module",
              srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]),
-             out = "qcom_audio.ko",
+             out = ["qcom_audio.ko"],
+             deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/audio/include"],
              )
              ddk_module(
              name = "qcom_camera_module",
              srcs = glob(["techpack/camera/drivers/**/*.c", "techpack/camera/drivers/**/*.h"]),
-             out = "qcom_camera.ko",
+             outs = ["qcom_camera.ko"],
+             deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/camera/drivers"],
              )
              ddk_module(
              name = "qcom_dataipa_module",
              srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
-             out = "qcom_dataipa.ko",
+             outs = ["qcom_dataipa.ko"],
+             deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/dataipa"],
              )
              ddk_module(
              name = "qcom_display_module",
              srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
-             out = "qcom_display.ko",
+             outs = ["qcom_display.ko"],
+             deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/display"],
              )
@@ -112,7 +115,7 @@ jobs:
               rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/cache
               rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/bazel
               bazel clean --expunge
-              bazel build //common:kernel_aarch64_headers
+              
               bazel build //android-kernel/modules/samsung-d:samsung_boot_images
               find . -name "Image" > image_path.txt
               find . -name "vendor_boot.img" > vendor_path.txt
