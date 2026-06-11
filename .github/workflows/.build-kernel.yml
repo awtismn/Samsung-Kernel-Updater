@@ -53,7 +53,7 @@ jobs:
              
              ddk_module(
               name = "qcom_audio_module",
-              srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]),
+              srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h", "techpack/audio/include/**/*.c", "techpsck/audio/include/**/*.h"]),
               out = "qcom_audio.ko",
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
@@ -102,7 +102,7 @@ jobs:
              )
              ddk_module(
               name = "qcom_dataipa_module",
-              srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
+              srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h", "techpack/dataipa/drivers/platform/msm/**/*.h"], "techpack/dataipa/drivers/platform/msm/**/*.h"),
               out = "qcom_dataipa.ko",
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
@@ -111,7 +111,7 @@ jobs:
               "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/dataipa",
-              "-Iandroid-kernel/modules/samsung-d/techpack/dataipa/drivers",
+              "-Iandroid-kernel/modules/samsung-d/techpack/dataipa/drivers/platform/msm",
               "-Wno-error",
               "-Wno-unused-function",
               "-Wno-unused-variable",
