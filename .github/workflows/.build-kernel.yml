@@ -59,6 +59,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
+              "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio/include/aosc",
               "-Wno-error",
               "-Wno-unused-function",
@@ -73,6 +74,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
+              "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera/include/",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers/cam_core",
               "-Wno-error",
@@ -103,6 +105,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
+              "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/display/msm",
               "-Iandroid-kernel/modules/samsung-d/techpack/display/msm/dsi",
               "-Wno-error",
@@ -118,6 +121,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
+              "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/video/msm/vidc",
               "-Iandroid-kernel/modules/samsung-d/techpack/video/vidc/media",
               "-Iandroid-kernel/modules/samsung-d/drivers/soc/qcom",
@@ -134,6 +138,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
+              "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/tecpack/stub",
               "-Wno-error",
               "-Wno-unused-function",
@@ -148,6 +153,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
+              "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/drivers/net/wireless/ath",
               "-Wno-error",
               "-Wno-unused-function",
