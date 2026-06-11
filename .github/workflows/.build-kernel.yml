@@ -146,21 +146,6 @@ jobs:
               "-Wno-declaration-after-statement",
               ],
              )
-             ddk_module(
-              name = "qcom_wireless_module",
-              srcs = glob([ "drivers/net/wireless/**/*.c", "drivers/net/wireless/**/*.h"]),
-              out = "qcom_wlan.ko",
-              deps = [":gki_headers"],
-              kernel_build = "//common:kernel_aarch64",
-              copts = [
-              "-Iandroid-kernel/modules/samsung-d/include/linux",
-              "-Iandroid-kernel/modules/samsung-d/drivers/net/wireless/ath",
-              "-Wno-error",
-              "-Wno-unused-function",
-              "-Wno-unused-variable",
-              "-Wno-declaration-after-statement",
-              ],
-             )
              
              kernel_modules_install(
              name = "samsung_modules_install",
@@ -171,7 +156,6 @@ jobs:
              ":qcom_display_module",
              ":qcom_video_module",
              ":qcom_stub_module",
-             ":qcom_wireless_module",
              ],
              kernel_build = "//common:kernel_aarch64",
              )
@@ -191,7 +175,6 @@ jobs:
              qcom_video.ko
              qcom_camera.ko
              qcom_dataipa.ko
-             qcom_wlan.ko
              EOF
              if [ -f "vendor_boot.modules.load" ]; then echo "Created vendor_boot.modules.load"; fi
          - name: Setup Bazel
@@ -203,6 +186,7 @@ jobs:
            run: |
               rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/cache
               rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/bazel
+              bazel clean --expunge
               
               bazel build //android-kernel/modules/samsung-d:samsung_boot_images --config=fast --sandbox_debug --define=KLEAF_WARN_UNDECLARED_OUTPUTS=true
               image_file=$(find android-kernel -type f -name "Image")
