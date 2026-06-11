@@ -164,7 +164,7 @@ jobs:
              ddk_module(
               name = "qcom_stub_module",
               srcs = glob(["techpack/stub/**/*.c", "techpack/stub/**/*.h"]),
-              outs = "[qcom_stub.ko"],
+              outs = ["qcom_stub.ko"],
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
