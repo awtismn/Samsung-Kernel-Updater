@@ -37,6 +37,7 @@ jobs:
              cp -r samsung-source/drivers/media/ modules/samsung-d/drivers
              echo "Cloned Drivers, Removing Cloned Repo (To Save Space)"
              rm -rf samsung-source/
+             find modules/samsung-d -name "include/generated" -type d -exec rm -rf {} +
              echo "Done. Next Step"
          - name: Creating Neccessary KLeaf Files
            run: |
@@ -111,7 +112,7 @@ jobs:
               rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/cache
               rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/bazel
               bazel clean --expunge
-              
+              bazel build //common:kernel_aarch64_headers
               bazel build //android-kernel/modules/samsung-d:samsung_boot_images
               find . -name "Image" > image_path.txt
               find . -name "vendor_boot.img" > vendor_path.txt
