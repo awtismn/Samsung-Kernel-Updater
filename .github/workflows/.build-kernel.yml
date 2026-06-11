@@ -93,6 +93,11 @@ jobs:
               out = "qcom_stub.ko",
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
+              copts = [
+              "-Iandroid-kernel/modules/samsung-d/techpack/stub",
+              "-Iandroid-kernel/modules/samsung-d/techpack/stub/include",
+              "-Wno-error", 
+              ],
              )
              ddk_module(
               name = "qcom_wireless_module",
