@@ -120,6 +120,7 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/techpack/video/msm/vidc",
               "-Iandroid-kernel/modules/samsung-d/techpack/video/vidc/media",
+              "-Iandroid-kernel/modules/samsung-d/drivers/soc/qcom
               "-Wno-error",
               "-Wno-unused-function",
               "-Wno-unused-variable",
