@@ -102,7 +102,7 @@ jobs:
              )
              ddk_module(
               name = "qcom_dataipa_module",
-              srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h", "techpack/dataipa/drivers/platform/msm/**/*.h"], "techpack/dataipa/drivers/platform/msm/**/*.h"),
+              srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h", "techpack/dataipa/drivers/platform/msm/**/*.h", "techpack/dataipa/drivers/platform/msm/**/*.h"]),
               out = "qcom_dataipa.ko",
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
