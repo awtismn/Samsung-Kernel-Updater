@@ -46,69 +46,55 @@ jobs:
              load("//build/kernel/kleaf:kernel.bzl", "ddk_module", "kernel_images", "kernel_modules_install")
 
              package(default_visibility = ["//visibility:public"])
-             
              ddk_module(
-              name = "qcom_audio_module",
-              srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]),
-              outs = ["qcom_audio.ko"],
-              includes = ["techpack/audio/include"],
-              kernel_build = "//common:kernel_aarch64",
+             name = "qcom_audio_module",
+             srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]),
+             outs = ["qcom_audio.ko"],
+             kernel_build = "//common:kernel_aarch64",
+             includes = ["techpack/audio/include"],
              )
+
              ddk_module(
-              name = "qcom_camera_module",
-              srcs = glob(["techpack/camera/**/*.c", "techpack/camera/**/*.h"]),
-              outs = ["qcom_camera.ko"],
-              includes = ["techpack/camera/include"],
-              kernel_build = "//common:kernel_aarch64",
+             name = "qcom_camera_module",
+             srcs = glob(["techpack/camera/drivers/**/*.c", "techpack/camera/drivers/**/*.h"]),
+             outs = ["qcom_camera.ko"],
+             kernel_build = "//common:kernel_aarch64",
+             includes = ["techpack/camera/drivers"],
              )
+
              ddk_module(
-              name = "qcom_dataipa_module",
-              srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
-              outs = ["qcom_dataipa.ko"],
-              includes = ["techpack/dataipa/include"],
-              kernel_build = "//common:kernel_aarch64",
+             name = "qcom_dataipa_module",
+             srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
+             outs = ["qcom_dataipa.ko"],
+             kernel_build = "//common:kernel_aarch64",
+             includes = ["techpack/dataipa"],
              )
+
              ddk_module(
-              name = "qcom_display_module",
-              srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
-              outs = ["qcom_display.ko"],
-              includes = ["techpack/display/include"],
-              kernel_build = "//common:kernel_aarch64",
+             name = "qcom_display_module",
+             srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
+             outs = ["qcom_display.ko"],
+             kernel_build = "//common:kernel_aarch64",
+             includes = ["techpack/display"],
              )
-             ddk_module(
-              name = "qcom_video_module",
-              srcs = glob(["techpack/video/**/*.c", "techpack/video/**/*.h"]),
-              outs = ["qcom_video.ko"],
-              includes = ["techpack/video/include"],
-              kernel_build = "//common:kernel_aarch64",
-             )
-             ddk_module(
-              name = "qcom_stub_module",
-              srcs = glob(["techpack/stub/**/*.c", "techpack/stub/**/*.h"]),
-              outs = ["qcom_stub.ko"],
-              includes = ["techpack/stub/include"],
-              kernel_build = "//common:kernel_aarch64",
-             )
-             
+
              kernel_modules_install(
              name = "samsung_modules_install",
              kernel_modules = [
-             ":qcom_audio_module",
-             ":qcom_camera_module",
-             ":qcom_dataipa_module",
-             ":qcom_display_module",
-             ":qcom_video_module",
-             ":qcom_stub_module",
+              ":qcom_audio_module",
+              ":qcom_camera_module",
+              ":qcom_dataipa_module",
+              ":qcom_display_module",
              ],
              kernel_build = "//common:kernel_aarch64",
              )
+
              kernel_images(
              name = "samsung_boot_images",
              build_vendor_boot = True,
              build_initramfs = True,
              kernel_modules_install = ":samsung_modules_install",
              kernel_build = "//common:kernel_aarch64",
-             )
              EOF
              if [ -f "BUILD.bazel" ]; then echo "Created BUILD.bazel"; fi
              cat <<EOF > vendor_boot.modules.load
@@ -131,7 +117,7 @@ jobs:
               rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/bazel
               bazel clean --expunge
               
-              bazel build //android-kernel/modules/samsung-d:samsung_boot_images --config=fast --sandbox_debug --define=KLEAF_WARN_UNDECLARED_OUTPUTS=true
+              bazel build //android-kernel/modules/samsung-d:samsung_boot_images --verbose_warnings
               find . -name "Image" > image_path.txt
               find . -name "vendor_boot.img" > vendor_path.txt
          - name: Uploading Images
