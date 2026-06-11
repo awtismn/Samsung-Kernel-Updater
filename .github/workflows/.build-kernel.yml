@@ -119,6 +119,7 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/techpack/video/msm/vidc",
+              "-Iandroid-kernel/modules/samsung-d/techpack/video/vidc/media",
               "-Wno-error",
               "-Wno-unused-function",
               "-Wno-unused-variable",
@@ -197,10 +198,13 @@ jobs:
               rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/bazel
               
               bazel build //android-kernel/modules/samsung-d:samsung_boot_images --config=fast --sandbox_debug --define=KLEAF_WARN_UNDECLARED_OUTPUTS=true
+              image_file=$(find android-kernel -type f -name "Image")
+              vendor_file=$find android-kernel -type f -name "vendor_boot.img")
          - name: Uploading Images
            uses: actions/upload-artifact@v4
            with:
              name: Samsung-Images
              path: |
-               android-kernel/bazel-bin/modules/samsung-d/vendor_boot.img
-               android-kernel/bazel-bin/common/kernel_aarch64/Image
+               $image_file
+               $vendor_file
+               
