@@ -60,6 +60,10 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/techpack/audio/include/aosc",
+              "-Wno-error",
+              "-Wno-unused-function",
+              "-Wno-unused-variable",
+              "-Wno-declaration-after-statement",
               ],
              )
              ddk_module(
@@ -71,6 +75,10 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/techpack/camera/include/",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers/cam_core",
+              "-Wno-error",
+              "-Wno-unused-function",
+              "-Wno-unused-variable",
+              "-Wno-declaration-after-statement",
               ],
              )
              ddk_module(
@@ -82,6 +90,10 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/dataipa/platform/msm/gsi"
+              "-Wno-error",
+              "-Wno-unused-function",
+              "-Wno-unused-variable",
+              "-Wno-declaration-after-statement",
               ],
              )
              ddk_module(
@@ -90,6 +102,14 @@ jobs:
               out = "qcom_display.ko",
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
+              copts = [
+              "Iandroid-kernel/modules/samsung-d/techpack/display/msm",
+              "Iandroid-kernel/modules/samsung-d/techpack/display/msm/dsi",
+              "-Wno-error",
+              "-Wno-unused-function",
+              "-Wno-unused-variable",
+              "-Wno-declaration-after-statement",
+              ],
              )
              ddk_module(
               name = "qcom_video_module",
@@ -97,6 +117,13 @@ jobs:
               out = "qcom_video.ko",
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
+              copts = [
+              "Iandroid-kernel/modules/samsung-d/techpack/video/msm/vidc",
+              "-Wno-error",
+              "-Wno-unused-function",
+              "-Wno-unused-variable",
+              "-Wno-declaration-after-statement",
+              ],
              )
              ddk_module(
               name = "qcom_stub_module",
@@ -105,8 +132,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
-              "-Iandroid-kernel/modules/samsung-d/techpack/stub",
-              "-Iandroid-kernel/modules/samsung-d/techpack/stub/include",
+              "-Iandroid-kernel/modules/samsung-d/tecpack/stub",
               "-Wno-error",
               "-Wno-unused-function",
               "-Wno-unused-variable",
@@ -115,10 +141,17 @@ jobs:
              )
              ddk_module(
               name = "qcom_wireless_module",
-              srcs = glob([ "drivers/net/wireless/**/*.c", "drivers/net/wireless/**/*.h"]),
+              srcs = glob([ "drivers/net/**/*.c", "drivers/net/**/*.h"]),
               out = "qcom_wlan.ko",
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
+              copts = [
+              "Iandroid-kernel/modules/samsung-d/drivers/net",
+              "-Wno-error",
+              "-Wno-unused-function",
+              "-Wno-unused-variable",
+              "-Wno-declaration-after-statement",
+              ],
              )
              
              kernel_modules_install(
