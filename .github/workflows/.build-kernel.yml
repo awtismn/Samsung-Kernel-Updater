@@ -77,6 +77,7 @@ jobs:
               "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera/include",
+              "-Iandroid-kernel/modules/samsung-d/techpack/camera/cam_cdm",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers",
               "-Wno-error",
               "-Wno-unused-function",
