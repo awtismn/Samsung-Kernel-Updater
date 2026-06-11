@@ -29,6 +29,8 @@ jobs:
              echo "Repo Cloned, Now Cloning Modules..."
              mkdir -p modules/samsung-d
              cp -r samsung-source/techpack modules/samsung-d
+             cp -r samsung-source/linux modules/samsung-d
+             co -r samsung-source/include modules/samsung-d
              mkdir -p modules/samsung-d/drivers/soc
              cp -r samsung-source/drivers/soc/qcom modules/samsung-d/drivers/soc
              mkdir -p modules/samsung-d/drivers
@@ -58,6 +60,7 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio/include/aosc",
               "-Wno-error",
               "-Wno-unused-function",
@@ -73,6 +76,7 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera/include",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers",
               "-Wno-error",
@@ -89,6 +93,7 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/dataipa/platform/msm",
               "-Wno-error",
               "-Wno-unused-function",
@@ -104,6 +109,7 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/display/msm",
               "-Wno-error",
               "-Wno-unused-function",
@@ -119,6 +125,7 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/video/msm/vidc",
               "-Iandroid-kernel/modules/samsung-d/techpack/video/vidc/media",
               "-Iandroid-kernel/modules/samsung-d/drivers/soc/qcom",
@@ -136,6 +143,7 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/tecpack/stub",
               "-Wno-error",
               "-Wno-unused-function",
