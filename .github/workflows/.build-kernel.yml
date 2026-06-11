@@ -117,7 +117,7 @@ jobs:
               rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/bazel
               bazel clean --expunge
               
-              bazel build //android-kernel/modules/samsung-d:samsung_boot_images --verbose_warnings
+              bazel build //android-kernel/modules/samsung-d:samsung_boot_images
               find . -name "Image" > image_path.txt
               find . -name "vendor_boot.img" > vendor_path.txt
          - name: Uploading Images
