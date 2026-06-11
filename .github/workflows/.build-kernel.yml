@@ -52,6 +52,7 @@ jobs:
              deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/audio/include"],
+             module_layouts = [],
              )
              ddk_module(
              name = "qcom_camera_module",
@@ -60,6 +61,7 @@ jobs:
              deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/camera/drivers"],
+             module_layouts = []
              )
              ddk_module(
              name = "qcom_dataipa_module",
@@ -68,6 +70,7 @@ jobs:
              deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/dataipa"],
+             module_layouts = []
              )
              ddk_module(
              name = "qcom_display_module",
@@ -76,6 +79,7 @@ jobs:
              deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/display"],
+             module_layouts = []
              )
              kernel_modules_install(
              name = "samsung_modules_install",
@@ -97,10 +101,8 @@ jobs:
              EOF
              if [ -f "BUILD.bazel" ]; then echo "Created BUILD.bazel"; fi
              cat <<EOF > vendor_boot.modules.load
-             qcom_stub.ko
              qcom_audio.ko
              qcom_display.ko
-             qcom_video.ko
              qcom_camera.ko
              qcom_dataipa.ko
              EOF
