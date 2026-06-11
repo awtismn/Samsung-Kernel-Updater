@@ -146,7 +146,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
-              "-Iandroid-kernel/modules/samsung-d/drivers/net",
+              "-Iandroid-kernel/modules/samsung-d/drivers/net/wireless/ath",
               "-Wno-error",
               "-Wno-unused-function",
               "-Wno-unused-variable",
