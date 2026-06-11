@@ -66,7 +66,7 @@ jobs:
               "-Iandroid-kernel/modules/samsung-d/techpack/audio/include/aosc",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio/include/dsp",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio/include/ipc",
-              "-Iandroid-kernel/modules/samsung-d/techpsck/audio/include/soc",
+              "-Iandroid-kernel/modules/samsung-d/techpack/audio/include/soc",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio/aosc",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio/dsp",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio/ipc",
@@ -221,13 +221,13 @@ jobs:
               bazel clean --expunge
               
               bazel build //android-kernel/modules/samsung-d:samsung_boot_images --config=fast --sandbox_debug --define=KLEAF_WARN_UNDECLARED_OUTPUTS=true
-              image_file=$(find android-kernel -type f -name "Image")
-              vendor_file=$find android-kernel -type f -name "vendor_boot.img")
+              find . -name "Image" > image_path.txt
+              find . -name "vendor_boot.img" > vendor_path.txt
          - name: Uploading Images
            uses: actions/upload-artifact@v4
            with:
              name: Samsung-Images
              path: |
-               $image_file
-               $vendor_file
+               **/Image
+               **/vendor_boot.img
                
