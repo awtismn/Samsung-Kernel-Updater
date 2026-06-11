@@ -79,7 +79,7 @@ jobs:
              )
              ddk_module(
               name = "qcom_camera_module",
-              srcs = glob(["techpack/camera/**/*.c", "techpack/camera/**/*.h"]),
+              srcs = glob(["techpack/camera/drivers/**/*.c", "techpack/camera/drivers/**/*.h"]),
               out = "qcom_camera.ko",
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
@@ -89,6 +89,11 @@ jobs:
               "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers",
+              "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers/cam_cdm",
+              "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers/cam_core",
+              "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers/cam_cpas",
+              "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers/cam_cust",
+              "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers/cam_fd",
               "-Wno-error",
               "-Wno-unused-function",
               "-Wno-unused-variable",
