@@ -127,6 +127,7 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux/soc/qcom",
               "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/display",
               "-Iandroid-kernel/modules/samsung-d/techpack/display/hdcp",
