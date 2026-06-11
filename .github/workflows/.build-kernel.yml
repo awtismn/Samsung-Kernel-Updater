@@ -33,8 +33,6 @@ jobs:
              cp -r samsung-source/drivers/soc/qcom modules/samsung-d/drivers/soc
              mkdir -p modules/samsung-d/drivers
              cp -r samsung-source/drivers/media/ modules/samsung-d/drivers
-             mkdir -p modules/samsung-d/drivers/net/
-             cp -r samsung-source/drivers/net modules/samsung-d/drivers/net
              echo "Cloned Drivers, Removing Cloned Repo (To Save Space)"
              rm -rf samsung-source/
              echo "Done. Next Step"
