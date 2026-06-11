@@ -54,7 +54,7 @@ jobs:
              
              ddk_module(
               name = "qcom_audio_module",
-              srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h", "techpack/audio/include/**/*.c", "techpsck/audio/include/**/*.h"]),
+              srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h", "techpack/audio/include/**/*.c", "techpack/audio/include/**/*.h"]),
               outs = ["qcom_audio.ko"],
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
