@@ -58,7 +58,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
-              "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/techpack/",
               "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/audio",
@@ -84,7 +84,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
-              "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/camera",
@@ -107,7 +107,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
-              "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/dataipa",
@@ -125,7 +125,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
-              "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/display",
@@ -147,7 +147,7 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
-              "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/video/include",
@@ -167,11 +167,11 @@ jobs:
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
               copts = [
-              "-Iandroid-kernel/modules/samsung-d/include/linux",
+              "-Iandroid-kernel/modules/samsung-d/linux/include",
               "-Iandroid-kernel/modules/samsung-d/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack",
               "-Iandroid-kernel/modules/samsung-d/techpack/stub",
-              "-Iandroid-kernel/modules/samsung-d/techpack/stub/include",
+              "-Iandroid-kernel/modules/samsung-d/techpack/stub/include/uapi/stub",
               "-Wno-error",
               "-Wno-unused-function",
               "-Wno-unused-variable",
