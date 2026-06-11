@@ -62,7 +62,8 @@ jobs:
              ddk_module(
               name = "qcom_camera_module",
               srcs = glob(["techpack/camera/**/*.c", "techpack/camera/**/*.h"]),
-              out ="qcom_camera.ko",
+              out = "qcom_camera.ko",
+              outs = ["qcom_camera.ko", "drivers/media/platform/msm/camera_v2/sensor/msm_sensor.ko"],
               deps = [":gki_headers"],
               kernel_build = "//common:kernel_aarch64",
              )
