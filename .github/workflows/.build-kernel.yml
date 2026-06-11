@@ -73,8 +73,8 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
-              "-Iandroid-kernel/modules/samsung-d/techpack/camera/include/",
-              "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers/cam_core",
+              "-Iandroid-kernel/modules/samsung-d/techpack/camera/include",
+              "-Iandroid-kernel/modules/samsung-d/techpack/camera/drivers",
               "-Wno-error",
               "-Wno-unused-function",
               "-Wno-unused-variable",
@@ -89,7 +89,7 @@ jobs:
               kernel_build = "//common:kernel_aarch64",
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
-              "-Iandroid-kernel/modules/samsung-d/techpack/dataipa/platform/msm/gsi",
+              "-Iandroid-kernel/modules/samsung-d/techpack/dataipa/platform/msm",
               "-Wno-error",
               "-Wno-unused-function",
               "-Wno-unused-variable",
@@ -105,7 +105,6 @@ jobs:
               copts = [
               "-Iandroid-kernel/modules/samsung-d/include/linux",
               "-Iandroid-kernel/modules/samsung-d/techpack/display/msm",
-              "-Iandroid-kernel/modules/samsung-d/techpack/display/msm/dsi",
               "-Wno-error",
               "-Wno-unused-function",
               "-Wno-unused-variable",
