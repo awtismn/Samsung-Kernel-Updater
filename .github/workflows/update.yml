@@ -31,7 +31,7 @@ jobs:
 
          - name: Download GKI From AOSP
            run: |
-            mkdir android-kernel
+            git clone https://github.com/awtismn/gta9pwifi_platform.git android-kernel
             cd android-kernel
             rm -rf .repo
             repo init -u https://android.googlesource.com/kernel/manifest -b common-android15-6.6-2026-04 --depth=1
