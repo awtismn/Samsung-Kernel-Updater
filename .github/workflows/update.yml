@@ -20,7 +20,7 @@ jobs:
            run: |
             mkdir android-kernel
             repo init -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2026-04
-            repo sync -c -j$(nproc) --no-tags --no-clone-bundle
+            repo sync -c -j$(nproc) --no-tags --no-clone-bundle --verbose
 
          - name: Clone Drivers From Samsung Repo
            run: |
@@ -38,9 +38,6 @@ jobs:
            run: |
              cd android-kernel
              echo "Creating BUILD files"
-             touch build/kernel/BUILD
-             touch build/kernel/kleaf/BUILD
-             touch build/kernel/kleaf/impl/BUILD
              cat <<'EOF' > WORKSPACE
              load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
              workspace(name = "android_kernel")
