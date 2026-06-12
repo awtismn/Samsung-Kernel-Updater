@@ -68,7 +68,7 @@ jobs:
              name = "samsung_headers",
              hdrs = glob(["**/*.h"]),
              includes = ["."],
-             ),
+             )
              ddk_module(
              name = "qcom_audio_module",
              srcs = glob(["**/*.c", "**/*.h"]), 
