@@ -23,7 +23,7 @@ jobs:
          - name: Install The Dependencies
            run: |
             sudo apt-get update
-            sudo apt-get install -y bc bison build-essential flex git curl libssl-dev libelf-dev python3 linux-headers-$(uname -r)
+            sudo apt-get install -y bc bison build-essential flex git curl libssl-dev libelf-dev python3 linux-headers-$(uname -r) libssl-dev libncurses-dev 
             mkdir -p ~/bin
             curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
             chmod a+x ~/bin/repo
@@ -36,6 +36,7 @@ jobs:
             rm -rf .repo
             repo init -u https://android.googlesource.com/kernel/manifest -b common-android15-6.6-2026-04 --depth=1
             repo sync -c -j$(nproc) --no-tags --no-clone-bundle --verbose --fetch-submodules
+            
          - name: Clone Drivers From Samsung Repo
            run: |
              cd android-kernel
@@ -45,13 +46,12 @@ jobs:
              mkdir -p modules/samsung-d
              cp -r samsung-source/techpack modules/samsung-d
              echo "Cloned Modules, Removing Cloned Repo (To Save Space)"
-             rm -rf samsung-source/
              find modules/samsung-d -name "Makefile" -delete
              find modules/samsung-d -name "Kbuild" -type f -delete
              echo "Done. Next Step"
          - name: Creating Neccessary KLeaf Files
            run: |
-             cd android-kernel
+             cd android-kernel/modules/samsung-d
              cat <<'EOF' > BUILD.bazel
              load("//build/kernel/kleaf:kernel.bzl", "ddk_module", "kernel_images", "kernel_modules_install")
              package(default_visibility = ["//visibility:public"])
@@ -64,28 +64,28 @@ jobs:
              ]),
              visibility = ["//visibility:public"],
              )
-             kernel_module(
+             ddk_module(
              name = "qcom_audio_module",
              srcs = glob(["**/*.c", "**/*.h"]), 
              kernel_build = "//common:kernel_aarch64",
              includes = ["//:platform_headers"],
              out = "qcom_audio.ko",
              )
-             kernel_module(
+             ddk_module(
              name = "qcom_camera_module",
              srcs = glob(["**/*.c", "**/*.h"]), 
              kernel_build = "//common:kernel_aarch64",
              includes = ["//:platform_headers"],
              out = "qcom_camera.ko",
              )
-             kernel_module(
+             ddk_module(
              name = "qcom_dataipa_module",
              srcs = glob(["**/*.c", "**/*.h"]),
              kernel_build = "//common:kernel_aarch64",
              includes = ["//:platform_headers"],
              out = "qcom_dataipa.ko",
              )
-             kernel_module(
+             ddk_module(
              name = "qcom_display_module",
              srcs = glob(["**/*.c", "**/*.h"]),
              kernel_build = "//common:kernel_aarch64",
