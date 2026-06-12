@@ -50,7 +50,7 @@ jobs:
          - name: Creating Neccessary KLeaf Files
            run: |
              cd android-kernel
-             rm -r BUILD.bazel
+             touch BUILD.bazel
              cat <<'EOF' > BUILD.bazel
              load("//build/kernel/kleaf:kernel.bzl", "ddk_module", "kernel_images", "kernel_modules_install")
              package(default_visibility = ["//visibility:public"])
