@@ -20,11 +20,8 @@ jobs:
            run: |
             mkdir android-kernel
             rm -rf .repo
-            repo init -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2026-04 --depth=1
+            repo init -u https://android.googlesource.com/kernel/manifest -b common-android15-6.6-2026-04 --depth=1
             repo sync -c -j$(nproc) --no-tags --no-clone-bundle --verbose --fetch-submodules
-            rm -rf build/
-            git clone https://android.googlesource.com/kernel/build build
-            mv build kleaf
          - name: Clone Drivers From Samsung Repo
            run: |
              cd android-kernel
@@ -45,41 +42,36 @@ jobs:
              touch build/BUILD
              touch build/kernel/BUILD
              touch build/kernel/kleaf/BUILD
-             cat <<'EOF' > WORKSPACE
-             load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-             workspace(name = "android_kernel")
-             
-             EOF
              cd modules/samsung-d
              cat <<'EOF' > BUILD.bazel
              load("//build/kernel/kleaf:kernel.bzl", "ddk_module", "kernel_images", "kernel_modules_install")
              package(default_visibility = ["//visibility:public"])
              ddk_module(
              name = "qcom_audio_module",
-             srcs = glob(["../../techpack/audio/**/*.c", "techpack/audio/**/*.h"]), 
+             srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]), 
              kernel_build = "//:kernel_aarch64",
-             includes = ["../../techpack/audio/include"],
+             includes = ["techpack/audio/include"],
              out = "qcom_audio.ko",
              )
              ddk_module(
              name = "qcom_camera_module",
-             srcs = glob(["../../techpack/camera/drivers/**/*.c", "techpack/camera/drivers/**/*.h"]), 
+             srcs = glob(["techpack/camera/drivers/**/*.c", "techpack/camera/drivers/**/*.h"]), 
              kernel_build = "//:kernel_aarch64",
-             includes = ["../../techpack/camera/drivers"],
+             includes = ["techpack/camera/drivers"],
              out = "qcom_camera.ko",
              )
              ddk_module(
              name = "qcom_dataipa_module",
-             srcs = glob(["../../techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
+             srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
              kernel_build = "//:kernel_aarch64",
-             includes = ["../../techpack/dataipa"],
+             includes = ["techpack/dataipa"],
              out = "qcom_dataipa.ko",
              )
              ddk_module(
              name = "qcom_display_module",
-             srcs = glob(["../../techpack/display/**/*.c", "techpack/display/**/*.h"]),
+             srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
              kernel_build = "//:kernel_aarch64",
-             includes = ["../../techpack/display"],
+             includes = ["techpack/display"],
              out = "qcom_display.ko",
              )
              kernel_modules_install(
@@ -117,7 +109,7 @@ jobs:
            run: |
               cd android-kernel
               bazel clean --expunge
-              bazel build //modules/samsung-d:samsung_boot_images
+              bazel build //modules/samsung-d:samsung_modules_install
               find . -name "Image" > image_path.txt
               find . -name "vendor_boot.img" > vendor_path.txt
          - name: Uploading Images
