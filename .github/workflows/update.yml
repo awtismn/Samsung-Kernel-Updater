@@ -48,7 +48,7 @@ jobs:
              deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/audio/include"],
-             outs = ["qcom_audio.ko"],
+             out = "qcom_audio.ko",
              )
              ddk_module(
              name = "qcom_camera_module",
@@ -56,7 +56,7 @@ jobs:
              deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/camera/drivers"],
-             outs = ["qcom_camera.ko"],
+             out = "qcom_camera.ko",
              )
              ddk_module(
              name = "qcom_dataipa_module",
@@ -64,7 +64,7 @@ jobs:
              deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/dataipa"],
-             outs = ["qcom_dataipa.ko"],
+             out = "qcom_dataipa.ko",
              )
              ddk_module(
              name = "qcom_display_module",
@@ -72,7 +72,7 @@ jobs:
              deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/display"],
-             outs = ["qcom_display.ko"],
+             out = "qcom_display.ko",
              )
              kernel_modules_install(
              name = "samsung_modules_install",
