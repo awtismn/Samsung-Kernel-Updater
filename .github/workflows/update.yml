@@ -50,28 +50,28 @@ jobs:
              ddk_module(
              name = "qcom_audio_module",
              srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]), 
-             kernel_build = "//common:kernel_aarch64",
+             kernel_build = "//:kernel_aarch64",
              includes = ["techpack/audio/include"],
              out = "qcom_audio.ko",
              )
              ddk_module(
              name = "qcom_camera_module",
              srcs = glob(["techpack/camera/drivers/**/*.c", "techpack/camera/drivers/**/*.h"]), 
-             kernel_build = "//common:kernel_aarch64",
+             kernel_build = "//:kernel_aarch64",
              includes = ["techpack/camera/drivers"],
              out = "qcom_camera.ko",
              )
              ddk_module(
              name = "qcom_dataipa_module",
              srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
-             kernel_build = "//common:kernel_aarch64",
+             kernel_build = "//:kernel_aarch64",
              includes = ["techpack/dataipa"],
              out = "qcom_dataipa.ko",
              )
              ddk_module(
              name = "qcom_display_module",
              srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
-             kernel_build = "//common:kernel_aarch64",
+             kernel_build = "//:kernel_aarch64",
              includes = ["techpack/display"],
              out = "qcom_display.ko",
              )
