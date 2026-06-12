@@ -7,6 +7,19 @@ jobs:
    build-kernel:
       runs-on: ubuntu-latest
       steps:
+         - name: Free Space
+           uses: endersonmenezes/free-disk-space@v3
+           with:
+             remove_android: true
+             remove_dotnet: true
+             remove_haskell: true
+             remove_tool_cache: true
+             remove_swap: true
+             remove_packages: "azure-cli google-cloud-cli microsoft-edge-stable google-chrome-stable firefox postgresql* temurin-* *llvm* mysql* dotnet-sdk-*"
+             remove_packages_one_command: true
+             rm_cmd: "rmz"
+             rmz_version: "3.1.1"
+             
          - name: Install The Dependencies
            run: |
             sudo apt-get update
@@ -103,7 +116,7 @@ jobs:
            run: |
               cd android-kernel
               bazel clean --expunge
-              bazel build //android-kernel:samsung_modules_install
+              bazel build //modules/samsung-d:samsung_modules_install
               find . -name "Image" > image_path.txt
               find . -name "vendor_boot.img" > vendor_path.txt
          - name: Uploading Images
