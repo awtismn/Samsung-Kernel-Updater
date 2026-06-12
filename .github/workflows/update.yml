@@ -62,13 +62,13 @@ jobs:
              "frameworks/**/*.h",
              "system/**/*.h",
              ]),
+             visibility = ["//visibility:public"],
+             )
              ddk_headers(
              name = "samsung_headers",
              hdrs = glob(["**/*.h"]),
              includes = ["."],
-             )
-             visibility = ["//visibility:public"],
-             )
+             ),
              ddk_module(
              name = "qcom_audio_module",
              srcs = glob(["**/*.c", "**/*.h"]), 
