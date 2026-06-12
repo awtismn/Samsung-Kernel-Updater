@@ -104,8 +104,6 @@ jobs:
          - name: Compile Images With Bazel
            run: |
               rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/cache
-              rm -rf /home/runner/work/Samsung-Kernel-Updater/Samsung-Kernel-Updater/out/bazel
-              bazel clean --expunge
               
               bazel build //android-kernel/modules/samsung-d:samsung_boot_images
               find . -name "Image" > image_path.txt
