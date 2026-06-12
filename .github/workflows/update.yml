@@ -36,9 +36,14 @@ jobs:
              echo "Done. Next Step"
          - name: Creating Neccessary KLeaf Files
            run: |
-             cd android-kernel/modules/samsung-d
+             cd android-kernel
              echo "Creating BUILD files"
-             rm -f BUILD.bazel
+             cat <<'EOF' > WORKSPACE
+             load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+             workspace(name = "android_kernel")
+             
+             EOF
+             cd android-kernel/modules/samsung-d
              cat <<'EOF' > BUILD.bazel
              load("//build/kernel/kleaf:kernel.bzl", "ddk_module", "kernel_images", "kernel_modules_install")
              package(default_visibility = ["//visibility:public"])
