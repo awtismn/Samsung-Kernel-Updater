@@ -103,7 +103,7 @@ jobs:
            run: |
               cd android-kernel
               bazel clean --expunge
-              bazel build //:samsung_modules_install
+              bazel build //android-kernel:samsung_modules_install
               find . -name "Image" > image_path.txt
               find . -name "vendor_boot.img" > vendor_path.txt
          - name: Uploading Images
