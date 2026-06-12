@@ -101,6 +101,7 @@ jobs:
              
          - name: Compile Images With Bazel
            run: |
+              cd android-kernel
               touch android-kernel/modules/BUILD
               bazel clean --expunge
               bazel build //common:samsung_modules_install
