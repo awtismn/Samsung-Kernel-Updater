@@ -20,9 +20,9 @@ jobs:
            run: |
             mkdir android-kernel
             rm -rf .repo
-            rm -rf build/
             repo init -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2026-04 --depth=1
             repo sync -c -j$(nproc) --no-tags --no-clone-bundle --verbose --fetch-submodules
+            rm -rf build/
             git clone https://android.googlesource.com/kernel/build build
 
          - name: Clone Drivers From Samsung Repo
