@@ -118,9 +118,18 @@ jobs:
              EOF
              if [ -f "vendor_boot.modules.load" ]; then echo "Created vendor_boot.modules.load"; fi
          - name: Setup Bazel
-           uses: bazel-contrib/setup-bazel@main
+           uses: bazelbuild/setup-bazelisk@v3
            with:
-             repository-cache: false
+             bazelisk-version: latest
+
+         - name: Cache Bazel
+           uses: actions/cache@v4
+           with:
+             path: |
+               ~/.cache/bazel
+             key: bazel-${{ runner.os }}-${{ hashFiles('**/MODULE.bazel', '**/WORKSPACE') }}
+             restore-keys: |
+               bazel-${{ runner.os }}-
              
          - name: Compile Images With Bazel
            run: |
