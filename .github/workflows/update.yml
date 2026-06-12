@@ -44,16 +44,14 @@ jobs:
              package(default_visibility = ["//visibility:public"])
              ddk_module(
              name = "qcom_audio_module",
-             srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]),
-             deps = ["//common:kernel_aarch64_headers"], 
+             srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]), 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/audio/include"],
              out = "qcom_audio.ko",
              )
              ddk_module(
              name = "qcom_camera_module",
-             srcs = glob(["techpack/camera/drivers/**/*.c", "techpack/camera/drivers/**/*.h"]),
-             deps = ["//common:kernel_aarch64_headers"], 
+             srcs = glob(["techpack/camera/drivers/**/*.c", "techpack/camera/drivers/**/*.h"]), 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/camera/drivers"],
              out = "qcom_camera.ko",
@@ -61,7 +59,6 @@ jobs:
              ddk_module(
              name = "qcom_dataipa_module",
              srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
-             deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/dataipa"],
              out = "qcom_dataipa.ko",
@@ -69,7 +66,6 @@ jobs:
              ddk_module(
              name = "qcom_display_module",
              srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
-             deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/display"],
              out = "qcom_display.ko",
