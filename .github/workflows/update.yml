@@ -36,13 +36,7 @@ jobs:
              echo "Done. Next Step"
          - name: Creating Neccessary KLeaf Files
            run: |
-             cd android-kernel
-             echo "Creating BUILD files"
-             mkdir -p build/kernel/kleaf
-             touch build/BUILD
-             touch build/kernel/BUILD
-             touch build/kernel/kleaf/BUILD
-             cd modules/samsung-d
+             cd android-kernel/modules/samsung-d
              cat <<'EOF' > BUILD.bazel
              load("//build/kernel/kleaf:kernel.bzl", "ddk_module", "kernel_images", "kernel_modules_install")
              package(default_visibility = ["//visibility:public"])
@@ -107,9 +101,8 @@ jobs:
              
          - name: Compile Images With Bazel
            run: |
-              cd android-kernel
               bazel clean --expunge
-              bazel build //modules/samsung-d:samsung_modules_install
+              bazel build //android-kernel/modules/samsung-d:samsung_modules_install
               find . -name "Image" > image_path.txt
               find . -name "vendor_boot.img" > vendor_path.txt
          - name: Uploading Images
