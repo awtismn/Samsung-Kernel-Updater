@@ -32,7 +32,7 @@ jobs:
              echo "Cloned Modules, Removing Cloned Repo (To Save Space)"
              rm -rf samsung-source/
              find modules/samsung-d -name "Makefile" -delete
-             find modules/samsung-d -name "include/generated" -type d -exec rm -rf {} +
+             find modules/samsung-d -name "Kbuild" -type f -delete
              echo "Done. Next Step"
          - name: Creating Neccessary KLeaf Files
            run: |
@@ -49,7 +49,6 @@ jobs:
              deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/audio/include"],
-             module_layouts = [],
              )
              ddk_module(
              name = "qcom_camera_module",
@@ -58,7 +57,6 @@ jobs:
              deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/camera/drivers"],
-             module_layouts = []
              )
              ddk_module(
              name = "qcom_dataipa_module",
@@ -67,16 +65,14 @@ jobs:
              deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/dataipa"],
-             module_layouts = []
              )
              ddk_module(
              name = "qcom_display_module",
              srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
-             out = "qcom_display.ko",
+             module_out = "qcom_display.ko",
              deps = ["//common:kernel_aarch64_headers"], 
              kernel_build = "//common:kernel_aarch64",
              includes = ["techpack/display"],
-             module_layouts = []
              )
              kernel_modules_install(
              name = "samsung_modules_install",
