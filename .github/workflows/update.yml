@@ -106,7 +106,6 @@ jobs:
              name = "samsung_boot_images",
              build_vendor_boot = True,
              build_initramfs = True,
-             kernel_modules_install = ":samsung_modules_install",
              kernel_build = "//common:kernel_aarch64",
              )
              EOF
