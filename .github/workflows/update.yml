@@ -19,8 +19,11 @@ jobs:
          - name: Download GKI From AOSP
            run: |
             mkdir android-kernel
+            rm -rf .repo
+            rm -rf build/
             repo init -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2026-04
-            repo sync -c -j$(nproc) --no-tags --no-clone-bundle --verbose
+            repo sync -c -j$(nproc) --no-tags --no-clone-bundle --verbose --fetch-submodules
+            git clone https://android.googlesource.com/kernel/build build
 
          - name: Clone Drivers From Samsung Repo
            run: |
@@ -53,30 +56,30 @@ jobs:
              package(default_visibility = ["//visibility:public"])
              ddk_module(
              name = "qcom_audio_module",
-             srcs = glob(["techpack/audio/**/*.c", "techpack/audio/**/*.h"]), 
+             srcs = glob(["../../techpack/audio/**/*.c", "techpack/audio/**/*.h"]), 
              kernel_build = "//:kernel_aarch64",
-             includes = ["techpack/audio/include"],
+             includes = ["../../techpack/audio/include"],
              out = "qcom_audio.ko",
              )
              ddk_module(
              name = "qcom_camera_module",
-             srcs = glob(["techpack/camera/drivers/**/*.c", "techpack/camera/drivers/**/*.h"]), 
+             srcs = glob(["../../techpack/camera/drivers/**/*.c", "techpack/camera/drivers/**/*.h"]), 
              kernel_build = "//:kernel_aarch64",
-             includes = ["techpack/camera/drivers"],
+             includes = ["../../techpack/camera/drivers"],
              out = "qcom_camera.ko",
              )
              ddk_module(
              name = "qcom_dataipa_module",
-             srcs = glob(["techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
+             srcs = glob(["../../techpack/dataipa/**/*.c", "techpack/dataipa/**/*.h"]),
              kernel_build = "//:kernel_aarch64",
-             includes = ["techpack/dataipa"],
+             includes = ["../../techpack/dataipa"],
              out = "qcom_dataipa.ko",
              )
              ddk_module(
              name = "qcom_display_module",
-             srcs = glob(["techpack/display/**/*.c", "techpack/display/**/*.h"]),
+             srcs = glob(["../../techpack/display/**/*.c", "techpack/display/**/*.h"]),
              kernel_build = "//:kernel_aarch64",
-             includes = ["techpack/display"],
+             includes = ["../../techpack/display"],
              out = "qcom_display.ko",
              )
              kernel_modules_install(
