@@ -32,6 +32,7 @@ jobs:
          - name: Download GKI From AOSP
            run: |
             mkdir android-kernel
+            cd android-kernel
             rm -rf .repo
             repo init -u https://android.googlesource.com/kernel/manifest -b common-android15-6.6-2026-04 --depth=1
             repo sync -c -j$(nproc) --no-tags --no-clone-bundle --verbose --fetch-submodules
