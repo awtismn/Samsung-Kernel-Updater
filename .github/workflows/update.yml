@@ -24,7 +24,7 @@ jobs:
             repo sync -c -j$(nproc) --no-tags --no-clone-bundle --verbose --fetch-submodules
             rm -rf build/
             git clone https://android.googlesource.com/kernel/build build
-
+            mv build kleaf
          - name: Clone Drivers From Samsung Repo
            run: |
              cd android-kernel
