@@ -101,6 +101,9 @@ jobs:
              qcom_dataipa.ko
              EOF
              if [ -f "vendor_boot.modules.load" ]; then echo "Created vendor_boot.modules.load"; fi
+             touch build/kernel/BUILD
+             touch build/kernel/kleaf/BUILD
+             touch build/kernel/kleaf/impl/BUILD
          - name: Setup Bazel
            uses: bazel-contrib/setup-bazel@main
            with:
