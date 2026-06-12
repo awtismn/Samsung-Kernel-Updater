@@ -53,7 +53,7 @@ jobs:
            run: |
              cd android-kernel/modules/samsung-d
              cat <<'EOF' > BUILD.bazel
-             load("//build/kernel/kleaf:kernel.bzl", "ddk_module", "kernel_images", "kernel_modules_install")
+             load("//build/kernel/kleaf:kernel.bzl", "ddk_headers", "ddk_module", "kernel_images", "kernel_modules_install")
              package(default_visibility = ["//visibility:public"])
              ddk_headers(
              name = "samsung_headers",
