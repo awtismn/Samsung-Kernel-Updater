@@ -58,7 +58,7 @@ jobs:
              ddk_headers(
              name = "samsung_headers",
              hdrs = glob(["**/*.h"]),
-             includes = ["vendor/", "framworks/", "system/", "techpack"],
+             includes = ["."],
              )
              filegroup(
              name = "platform_headers",
@@ -75,6 +75,11 @@ jobs:
              kernel_build = "//common:kernel_aarch64",
              deps = ["//:samsung_headers"],
              out = "qcom_audio.ko",
+             linux_includes = [
+             "vendor/include",
+             "frameworks/include",
+             "system/include",
+             ],
              )
              ddk_module(
              name = "qcom_camera_module",
@@ -82,6 +87,11 @@ jobs:
              kernel_build = "//common:kernel_aarch64",
              deps = ["//:samsung_headers"],
              out = "qcom_camera.ko",
+             linux_includes = [
+             "vendor/include",
+             "frameworks/include",
+             "system/include",
+             ],
              )
              ddk_module(
              name = "qcom_dataipa_module",
@@ -89,6 +99,11 @@ jobs:
              kernel_build = "//common:kernel_aarch64",
              deps = ["//:samsung_headers"],
              out = "qcom_dataipa.ko",
+             linux_includes = [
+             "vendor/include",
+             "frameworks/include",
+             "system/include",
+             ],
              )
              ddk_module(
              name = "qcom_display_module",
@@ -96,6 +111,11 @@ jobs:
              kernel_build = "//common:kernel_aarch64",
              deps = ["//:samsung_headers"],
              out = "qcom_display.ko",
+             linux_includes = [
+             "vendor/include",
+             "frameworks/include",
+             "system/include",
+             ],
              )
              kernel_modules_install(
              name = "samsung_modules_install",
